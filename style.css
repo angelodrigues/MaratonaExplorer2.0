@@ -4,13 +4,19 @@
     padding: 0;
     box-sizing: border-box;
   }
+html {
+    --bg: #000000;
+    --btd-ring: #363636;
+    --btd-ring-hover: #778899;
+    --color-name: white;
+}
+
 
 body {
-    background: black ;
+    background: var(--bg) ;
     text-align: center;
     color: white;
     font-family: 'Roboto', sans-serif;
-
 }
 
 .container {
@@ -26,9 +32,10 @@ a{
 /*Body*/
 img {
     padding: 0.25rem;
-    border: 0.25rem solid #363636;
+    border: 0.25rem solid var(--btd-ring);
     border-radius: 50%;
     margin-top: 6.25rem;
+    margin-left: 3rem;
     width: 6.25rem ;
     height: 6.25rem;
     cursor: pointer;
@@ -40,6 +47,7 @@ img:hover {
 
 h1{
     margin: 1rem 0 4rem 1rem ;
+    color: var(--color-name);
 }
 
 ul li {
@@ -51,7 +59,7 @@ ul li .linksAcess {
     cursor: pointer;
     border-radius: 0.4rem ;
     color: white ;
-    background: #363636;
+    background: var(--btd-ring);
     padding: 1.25rem 1rem; 
     display: block;
     transition: background 400ms;
@@ -60,6 +68,48 @@ ul li .linksAcess {
 }
 
 .linksAcess:hover {
-    background: #1C1C1C;
+    background: var(--btd-ring-hover);
 }
 
+/*LightMode*/
+input[type=checkbox]{
+    height:0;
+    width:0;
+    visibility: hidden;
+}
+
+label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width:2.25rem;
+    height:1.2rem;
+    background:grey;
+    float: right; 
+    border-radius: 6.25rem;
+    position: relative;
+}
+
+label::after{
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 90px;
+    transition: 0.4s;
+}
+
+input:checked + label {
+    background-color: #4682B4;
+}
+
+input:checked + label::after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+}
+
+label:active:after {
+    width:2.8125rem;
+}
